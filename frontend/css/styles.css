@@ -1,0 +1,811 @@
+/* ===== RESET Y BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #F5F2EC;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    margin: 0;
+}
+
+#app {
+    width: 100%;
+    max-width: 850px;
+    background: #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== BARRA DE VENTANA ===== */
+.window-bar {
+    display: flex;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid #F0EDE8;
+    position: relative;
+}
+
+.window-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: opacity 0.2s;
+}
+
+.dot:hover {
+    opacity: 0.7;
+}
+
+.dot-red {
+    background: #FF5F57;
+}
+.dot-yellow {
+    background: #FFBD2E;
+}
+.dot-green {
+    background: #28C840;
+}
+
+.window-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #B0B0B0;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+.main-content {
+    padding: 40px 48px 48px 48px;
+}
+
+/* ===== ENCABEZADO ===== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.header-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.header h1 {
+    font-size: 38px;
+    font-weight: 700;
+    color: #2D2A5A;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.5px;
+}
+
+/* ===== USER INFO ===== */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#userName {
+    color: #2D2A5A;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* ===== BOTONES DE LOGIN/LOGOUT ===== */
+.btn-login {
+    background: #4F46E5;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.btn-login:hover {
+    background: #4338CA;
+    transform: scale(1.05);
+}
+
+.btn-logout {
+    background: #EF4444;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s;
+    font-size: 14px;
+}
+
+.btn-logout:hover {
+    background: #DC2626;
+    transform: scale(1.05);
+}
+
+/* ===== ÁREA DE INPUT ===== */
+.note-input-area {
+    margin-bottom: 32px;
+}
+
+.input-group {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.note-input {
+    flex: 1;
+    height: 48px;
+    padding: 0 16px;
+    border: 1.5px solid #E8E5E0;
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    color: #2D2A5A;
+    background: #FFFFFF;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+.note-input::placeholder {
+    color: #C5C5C5;
+    font-weight: 400;
+}
+
+.note-input:focus {
+    border-color: #4F46E5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.note-input:disabled {
+    background: #F5F5F5;
+    cursor: not-allowed;
+}
+
+.char-counter {
+    text-align: right;
+    font-size: 13px;
+    color: #B0B0B0;
+    margin-top: 8px;
+    font-weight: 400;
+    transition: color 0.2s;
+}
+
+.char-counter.exceeded {
+    color: #EF4444;
+}
+
+.btn-add {
+    padding: 0 28px;
+    height: 48px;
+    background: #FFFFFF;
+    color: #4F46E5;
+    border: 1.5px solid #4F46E5;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-add:hover {
+    background: #4F46E5;
+    color: #FFFFFF;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.btn-add:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.btn-add:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* ===== CONTENEDOR DE NOTAS ===== */
+.notes-container {
+    border: 1.5px dashed #D9D9D9;
+    border-radius: 16px;
+    min-height: 280px;
+    padding: 24px;
+    transition: border-color 0.3s;
+    position: relative;
+}
+
+.notes-container:has(.note-card) {
+    border-color: #E8E5E0;
+}
+
+/* ===== ESTADO VACÍO ===== */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 232px;
+    text-align: center;
+}
+
+.empty-icon {
+    width: 56px;
+    height: 56px;
+    stroke: #D9D9D9;
+    margin-bottom: 16px;
+}
+
+.empty-state h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2D2A5A;
+    margin-bottom: 6px;
+}
+
+.empty-state p {
+    font-size: 15px;
+    color: #B0B0B0;
+    font-weight: 400;
+}
+
+/* ===== GRID DE NOTAS ===== */
+.notes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+/* ===== TARJETA DE NOTA ===== */
+.note-card {
+    background: #FFFFFF;
+    border: 1px solid #E8E5E0;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s ease;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.note-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    border-color: #D9D9D9;
+    transform: translateY(-1px);
+}
+
+.note-card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.note-text {
+    flex: 1;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #2D2A5A;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    font-weight: 400;
+}
+
+.note-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+    align-items: center;
+}
+
+.note-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #F5F2EC;
+}
+
+.note-date {
+    font-size: 12px;
+    color: #B0B0B0;
+    font-weight: 400;
+}
+
+.note-date-edit {
+    font-size: 12px;
+    color: #D9D9D9;
+    font-weight: 400;
+}
+
+/* ===== BOTONES DE ACCIÓN ===== */
+.btn-icon {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-icon-edit {
+    background: transparent;
+    color: #4F46E5;
+}
+
+.btn-icon-edit:hover {
+    background: #EEF2FF;
+    transform: scale(1.04);
+}
+
+.btn-icon-delete {
+    background: transparent;
+    color: #EF4444;
+}
+
+.btn-icon-delete:hover {
+    background: #FEF2F2;
+    transform: scale(1.04);
+}
+
+/* ===== MODAL DE EDICIÓN ===== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    animation: fadeIn 0.25s ease;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 32px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    animation: slideUp 0.3s ease;
+}
+
+.modal-content h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2D2A5A;
+    margin-bottom: 20px;
+}
+
+.modal-input-group {
+    margin-bottom: 20px;
+}
+
+.modal-textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px 16px;
+    border: 1.5px solid #E8E5E0;
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    color: #2D2A5A;
+    resize: vertical;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+.modal-textarea:focus {
+    border-color: #4F46E5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.modal-counter {
+    margin-top: 6px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.modal-actions .btn {
+    flex: 1;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background: #4F46E5;
+    color: #FFFFFF;
+}
+
+.btn-primary:hover {
+    background: #4338CA;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.btn-secondary {
+    background: #F5F2EC;
+    color: #2D2A5A;
+}
+
+.btn-secondary:hover {
+    background: #EDE8E0;
+}
+
+/* ===== MODAL DE LOGIN ===== */
+#loginModal .modal-content {
+    max-width: 420px;
+}
+
+#loginModal .form-group {
+    margin-bottom: 15px;
+}
+
+#loginModal .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+#loginModal .form-group input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid #E8E5E0;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s;
+}
+
+#loginModal .form-group input:focus {
+    outline: none;
+    border-color: #4F46E5;
+}
+
+#loginModal .btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+}
+
+#loginModal .btn-primary {
+    background: #4F46E5;
+    color: white;
+}
+
+#loginModal .btn-primary:hover {
+    background: #4338CA;
+    transform: translateY(-2px);
+}
+
+#loginModal .btn-secondary {
+    background: #F5F2EC;
+    color: #2D2A5A;
+}
+
+#loginModal .btn-secondary:hover {
+    background: #EDE8E0;
+}
+
+#loginModal .alert {
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: none;
+}
+
+#loginModal .alert-success {
+    background: #D4EDDA;
+    color: #155724;
+    display: block;
+}
+
+#loginModal .alert-error {
+    background: #F8D7DA;
+    color: #721C24;
+    display: block;
+}
+
+#loginModal a {
+    color: #4F46E5;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+#loginModal a:hover {
+    text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    body {
+        padding: 16px 12px;
+    }
+
+    #app {
+        border-radius: 16px;
+    }
+
+    .main-content {
+        padding: 24px 20px 28px 20px;
+    }
+
+    .window-bar {
+        padding: 12px 16px;
+    }
+
+    .window-title {
+        font-size: 11px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .header-icon {
+        width: 26px;
+        height: 26px;
+    }
+
+    .user-info {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .input-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .note-input {
+        width: 100%;
+        height: 44px;
+    }
+
+    .btn-add {
+        width: 100%;
+        justify-content: center;
+        height: 44px;
+    }
+
+    .notes-container {
+        padding: 16px;
+        min-height: 200px;
+    }
+
+    .note-card {
+        padding: 14px 16px;
+    }
+
+    .note-card-content {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .note-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .modal-content {
+        padding: 24px 20px;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+
+    #loginModal .modal-content {
+        max-width: 100%;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        padding: 16px 12px 20px 12px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .note-text {
+        font-size: 14px;
+    }
+
+    .btn-icon {
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+
+    .empty-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .empty-state h3 {
+        font-size: 16px;
+    }
+
+    .empty-state p {
+        font-size: 14px;
+    }
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #D9D9D9;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #C5C5C5;
+}
+/* ===== CONTADOR DE NOTAS ===== */
+.note-counter {
+    background: #EEF2FF;
+    color: #4F46E5;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.note-counter .icon {
+    font-size: 14px;
+}
+
+.note-counter .number {
+    font-size: 15px;
+}
+
+/* ===== HEADER RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    
+    .header-left {
+        justify-content: center;
+    }
+    
+    .user-info {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .note-counter {
+        font-size: 12px;
+        padding: 3px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .btn-login, .btn-logout {
+        width: 100%;
+        justify-content: center;
+    }
+}
