@@ -1,5 +1,5 @@
 // ===== CONFIGURACIÓN =====
-const API_URL = 'https://blog-de-notas-q5f3.onrender.com';
+const API_URL = 'https://blog-de-notas-q5f3.onrender.com/api';
 
 // ===== OBTENER TOKEN =====
 function getToken() {
